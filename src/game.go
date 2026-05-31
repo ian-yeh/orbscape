@@ -1,42 +1,39 @@
 package src
 
 import (
-	"log"
+	"github.com/ian-yeh/orbscape/shared"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type Game struct {
-	ball *Ball
+	*shared.GameState
 }
 
 func (g *Game) Update() error {
-	g.ball.Update()
+	HandleBallInput(g.GameState.Ball)
 
 	return nil
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	g.ball.Draw(screen)
+	DrawBall(screen, g.GameState.Ball)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
 	return 600, 400
 }
 
-func NewGame() {
+func NewGame() error {
 	ebiten.SetWindowSize(640, 480)
 	ebiten.SetWindowTitle("Orbscape!")
 
 	// initialize objects
-	ballX := float32(48.0)
-	ballY := float32(48.0)
-	ballRadius := float32(8.0)
 	game := &Game{
-		ball: &Ball{ballX, ballY, ballRadius, "Dave"},
+		GameState: &shared.GameState{
+			Ball: &shared.Ball{X: 48, Y: 48, Rad: 8, Name: "Dave"},
+		},
 	}
 
-	if err := ebiten.RunGame(game); err != nil {
-		log.Fatal(err)
-	}
+	return ebiten.RunGame(game)
 }
 
