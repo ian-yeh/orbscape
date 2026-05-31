@@ -1,4 +1,4 @@
-module github.com/ian-yeh/physics-engine
+module github.com/ian-yeh/orbscape
 
 go 1.25.5
 
