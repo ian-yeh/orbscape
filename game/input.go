@@ -1,8 +1,7 @@
-package src
+package game
 
 import (
 	"github.com/ian-yeh/orbscape/shared"
-	"github.com/hajimehoshi/ebiten/v2/vector"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -15,7 +14,6 @@ func HandleBallInput(b *shared.Ball) {
 	}
 }
 
-func DrawBall(screen *ebiten.Image, b *shared.Ball) {
-	vector.FillCircle(screen, b.X, b.Y, b.Rad, shared.RED, true)
+func ShouldQuit() bool {
+	return ebiten.IsKeyPressed(ebiten.KeyEscape)
 }
-

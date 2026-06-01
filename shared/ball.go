@@ -5,7 +5,7 @@ type Ball struct {
 	Name string
 }
 
-const ballSpeed = 1.5
+const ballSpeed = 2.5
 
 func (b *Ball) Move(dx, dy float32) {
 	b.X += dx * ballSpeed
