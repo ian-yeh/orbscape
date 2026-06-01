@@ -19,7 +19,7 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	DrawGrid(screen, 50)
+	DrawGrid(screen, shared.CellSize, g.GameState.Grid)
 	DrawBall(screen, g.GameState.Ball)
 }
 
@@ -34,6 +34,7 @@ func NewGame() error {
 	game := &Game{
 		GameState: &shared.GameState{
 			Ball: &shared.Ball{X: 48, Y: 48, Rad: 44, Name: "Dave"},
+			Grid: shared.Parselevel(shared.Level1),
 		},
 	}
 
